@@ -73,9 +73,13 @@ function processConnectionHandler(connectionHandlerData, idPkey)
     });                
 
     // connDuration
-    $("#" + idPkey + "-minConnDuration").text(connectionHandlerData.minConnDuration.durationMs + " ms");
-    $("#" + idPkey + "-avgConnDuration").text(connectionHandlerData.avgConnDuration.durationMs + " ms");
-    $("#" + idPkey + "-maxConnDuration").text(connectionHandlerData.maxConnDuration.durationMs + " ms");
+    $("#" + idPkey + "-minConnDuration-time").text(timestampToDate(connectionHandlerData.minConnDuration.timestamp));
+    $("#" + idPkey + "-minConnDuration-duration").text(connectionHandlerData.minConnDuration.durationMs + " ms");
+
+    $("#" + idPkey + "-avgConnDuration-duration").text(connectionHandlerData.avgConnDuration.durationMs + " ms");
+
+    $("#" + idPkey + "-maxConnDuration-time").text(timestampToDate(connectionHandlerData.maxConnDuration.timestamp));
+    $("#" + idPkey + "-maxConnDuration-duration").text(connectionHandlerData.maxConnDuration.durationMs + " ms");
 
     // avgConnDurations
     var barData = [], barLabels = [];
@@ -388,8 +392,6 @@ function initThroughput()
             type: "GET",
             success: function(throughput)
             {
-                console.log(throughput);
-
                 var lineData = [], lineLabels = [];
 
                 for (var i = 0; i < throughput.length; i++)
@@ -397,8 +399,6 @@ function initThroughput()
                     lineData.push(throughput[i].objsPerMin);
                     lineLabels.push(timestampToDate(throughput[i].intervalStart, "time"));
                 }
-
-                console.log(lineLabels);
 
                 var lineChart = new Chart($("#throughput-line"), {
                     type: "line",
@@ -451,23 +451,23 @@ $(document).ready(function()
     setInterval(initMetaData, 2100000);
 
     initInputConnectionHandler();
-    setInterval(initInputConnectionHandler, 20000);
+    setInterval(initInputConnectionHandler, 20500);
 
     initInputBuffer();
-    setInterval(initInputBuffer, 20000);
+    setInterval(initInputBuffer, 21000);
 
     initProcessing();
-    setInterval(initProcessing, 20000);
+    setInterval(initProcessing, 21500);
 
     initOutputBuffer();
-    setInterval(initOutputBuffer, 20000);
+    setInterval(initOutputBuffer, 22000);
 
     initOutputConnectionHandler();
-    setInterval(initOutputConnectionHandler, 20000);
+    setInterval(initOutputConnectionHandler, 22500);
 
     initOutErrorHandler();
-    setInterval(initOutErrorHandler, 20000);
+    setInterval(initOutErrorHandler, 23000);
 
     initThroughput();
-    setInterval(initThroughput, 20000);
+    setInterval(initThroughput, 23500);
 });
