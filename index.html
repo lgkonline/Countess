@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html data-root="./">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<title class="translate">APP_TITLE</title>
+
+        <link rel="stylesheet" href="css/main.min.css">
+	</head>
+
+	<body>
+        <!--<div class="container">
+            <h1 class="display-4">Input Connection Handler</h1>
+            <canvas id="pie-chart"></canvas>
+        </div>-->
+
+        <header>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8 col-md-6">
+                        <h1 class="display-5 translate">APP_TITLE</h1>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label class="translate" for="language-switch">LANGUAGE</label>
+                                    <select class="form-control" id="language-switch">
+                                        <option class="translate" value="ENG">ENGLISH</option>
+                                        <option class="translate" value="GER">GERMAN</option>
+                                    </select>
+                                </div>                            
+                            </div>
+
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label class="translate" for="period-switch">PERIOD_OF_TIME</label>
+                                    <select class="form-control" id="period-switch">
+                                        <option value="10">10 min</option>
+                                        <option value="60">1 h</option>
+                                        <option value="1440">24 h</option>
+                                    </select>
+                                </div>                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>
+                            <span class="translate">SERVICE_INSTANCE</span>:
+                            "<span id="metadata-instanceName"></span>"
+                        </p>
+                        <p>
+                            <span class="translate">RUNNING_TIME_OF_PROCESSES</span>:
+                            <span id="metadata-processUptimeHours"></span>
+                        </p>
+                    </div>
+
+                    <div class="col-md-6">
+                        <h5><span class="translate">THROUGHPUT</span> (Obj/Min)</h5>
+                        <canvas id="throughput-line" height="40px"></canvas>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="container-fluid">
+            <div id="moni-row">
+                <div class="moni-col">
+                    <div class="card">
+                        <div class="card-block">
+                            <h4 class="card-title">Input Connection Handler</h4>
+
+                            <p>
+                                <span class="translate">LAST_CONNECTION</span>:
+                                <span id="inputConnHandler-lastConnection"></span>
+                            </p>
+
+                            <article>
+                                <h5 class="card-title translate">FREQUENCY_OF_PACKET_SIZES</h5>
+                                <canvas id="inputConnHandler-packetSizeAttributes"></canvas>
+                            </article>
+
+                            <article>
+                                <h5 class="card-title translate">DURATION_OF_CONNECTIONS</h5>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>Minimal</td><td id="inputConnHandler-minConnDuration"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="translate">AVERAGE</td><td id="inputConnHandler-avgConnDuration"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="translate">MAXIMUM</td><td id="inputConnHandler-maxConnDuration"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </article>
+
+                            <article>
+                                <h5 class="card-title"><span class="translate">AVERAGE_DURATION_OF_CONNECTIONS</span> (ms)</h5>
+                                <canvas id="inputConnHandler-avgConnDurations"></canvas>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+                <div class="moni-arrow">
+                    <span class="moni-arrow-sign right"></span>
+                </div>
+                <div class="moni-col">
+                    <div class="card">
+                        <div class="card-block">
+                            <h4 class="card-title">Input Buffer</h4>
+
+                            <article>
+                                <h5 class="card-title"><span class="translate">DURATION_OF_FREQUENCY</span> (Min)</h5>
+                                <canvas id="inputBuffer-durationOfFrequency"></canvas>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+                <div class="moni-arrow">
+                    <span class="moni-arrow-sign right"></span>
+                </div>
+                <div class="moni-col">
+                    <div class="card">
+                        <div class="card-block">
+                            <h4 class="card-title">Processing</h4>
+
+                            <article>
+                                <h5 class="card-title translate">FREQUENCY_OF_PROCESSING_CHAINS</h5>
+                                <canvas id="processing-procChainAttributes"></canvas>
+                            </article>
+
+                            <article>
+                                <h5 class="card-title translate">DURATION_OF_PROCESSING</h5>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>Minimal</td><td id="processing-minProcDuration"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="translate">AVERAGE</td><td id="processing-avgProcDuration"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="translate">MAXIMUM</td><td id="processing-maxProcDuration"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </article>
+
+                            <article>
+                                <h5 class="card-title"><span class="translate">AVERAGE_DURATION_OF_PROCESSING</span> (ms)</h5>
+                                <canvas id="processing-avgProcDurations"></canvas>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+                <div class="moni-arrow">
+                    <span class="moni-arrow-sign right"></span>
+                </div>
+                <div class="moni-col">
+                    <div class="card">
+                        <div class="card-block">
+                            <h4 class="card-title">Output Buffer</h4>
+
+                            <article>
+                                <h5 class="card-title"><span class="translate">DURATION_OF_FREQUENCY</span> (Min)</h5>
+                                <canvas id="outputBuffer-durationOfFrequency"></canvas>
+                            </article>
+                        </div>
+                    </div>
+
+                    <div class="text-xs-center">
+                        <span class="moni-arrow-sign up up-special"></span>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-block">
+                            <h4 class="card-title">Output Error Handler</h4>
+
+                            <article>
+                                <h5 class="card-title"><span class="translate">ACTIONS_OF</span> Error Handler</h5>
+                                <canvas id="outErrHandler-pie"></canvas>
+                            </article>
+
+                            <article>
+                                <h5 class="card-title"><span class="translate">AVERAGE_DURATION_OF_PROCESSING</span> (ms)</h5>
+                                <canvas id="outErrHandler-bar"></canvas>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+                <div class="moni-arrow">
+                    <span class="moni-arrow-sign right"></span>
+                    <span class="moni-arrow-sign left left-special"></span>
+                </div>
+                <div class="moni-col">
+                    <div class="card">
+                        <div class="card-block">
+                            <h4 class="card-title">Output Connection Handler</h4>
+
+                            <p>
+                                <span class="translate">LAST_CONNECTION</span>:
+                                <span id="outputConnHandler-lastConnection"></span>
+                            </p>
+
+                            <article>
+                                <h5 class="card-title translate">FREQUENCY_OF_PACKET_SIZES</h5>
+                                <canvas id="outputConnHandler-packetSizeAttributes"></canvas>
+                            </article>
+
+                            <article>
+                                <h5 class="card-title translate">DURATION_OF_CONNECTIONS</h5>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>Minimal</td><td id="outputConnHandler-minConnDuration"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="translate">AVERAGE</td><td id="outputConnHandler-avgConnDuration"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="translate">MAXIMUM</td><td id="outputConnHandler-maxConnDuration"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </article>
+
+                            <article>
+                                <h5 class="card-title"><span class="translate">AVERAGE_DURATION_OF_CONNECTIONS</span> (ms)</h5>
+                                <canvas id="outputConnHandler-avgConnDurations"></canvas>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="js/bundle.min.js"></script>
+        <script src="js/main.min.js"></script>
+	</body>
+</html>

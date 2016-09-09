@@ -1,0 +1,81 @@
+$spacer:   .5rem !default;
+
+// Forms
+
+$input-padding-x:                .5rem !default;
+$input-padding-y:                .25rem !default;
+$input-line-height:              1.25 !default;
+
+@import "../lib/bootstrap/scss/bootstrap";
+
+#moni-row {
+    @include make-row();
+
+    overflow-x: auto;
+    min-width: 1200px;
+}
+
+.moni-col {
+    @include make-col-ready(12, 65);
+    @include make-col(12, 65);
+
+    article {
+        padding: 1em 0;
+    }
+}
+
+.moni-arrow {
+    @include make-col-ready(1, 65);
+    @include make-col(1, 65);
+
+    padding: 0;
+    text-align: center;
+}
+
+.moni-arrow-sign {
+    color: $brand-primary;
+    font-size: 5.2em;
+    display: inline-block;
+
+    background-image: url(../img/arrow.png);
+    width: 25px; height: 62px;
+
+    &.right {
+        // &:before {
+        //     content: "\01F842";
+        // }        
+    }
+
+    &.left {
+        // &:before {
+        //     content: "\01F840";
+        // }        
+
+        transform: rotate(180deg);
+    }
+
+    &.up {
+        // &:before {
+        //     content: "\01F841";
+        // }    
+
+        transform: rotate(-90deg);
+    }
+
+    &.down {
+        // &:before {
+        //     content: "\01F843";
+        // } 
+
+        transform: rotate(-90deg);       
+    }
+
+    &.up-special {
+        margin-top: -.4em;
+        margin-bottom: -.2em;
+    }
+
+    &.left-special {
+        margin-top: 3em;
+    }
+}
