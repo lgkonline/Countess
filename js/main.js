@@ -212,12 +212,20 @@ function initProcessing()
                         }],
                         labels: pieLabels
                     }
-                });  
+                }); 
 
                 // ProcDuration
-                $("#processing-minProcDuration").text(processing.minProcDuration.durationMs + " ms");
-                $("#processing-avgProcDuration").text(processing.avgProcDuration.durationMs + " ms");
-                $("#processing-maxProcDuration").text(processing.maxProcDuration.durationMs + " ms");   
+                // $("#processing-minProcDuration-duration").text(processing.minProcDuration.durationMs + " ms");
+                // $("#processing-avgProcDuration-duration").text(processing.avgProcDuration.durationMs + " ms");
+                // $("#processing-maxProcDuration-duration").text(processing.maxProcDuration.durationMs + " ms");   
+
+                $("#processing-minConnDuration-time").text(timestampToDate(processing.minProcDuration.timestamp));
+                $("#processing-minConnDuration-duration").text(processing.minProcDuration.durationMs + " ms");
+
+                $("#processing-avgConnDuration-duration").text(processing.avgProcDuration.durationMs + " ms");
+
+                $("#processing-maxConnDuration-time").text(timestampToDate(processing.maxProcDuration.timestamp));
+                $("#processing-maxConnDuration-duration").text(processing.maxProcDuration.durationMs + " ms");         
 
                 // avgProcDurations
                 var barData = [], barLabels = [];
