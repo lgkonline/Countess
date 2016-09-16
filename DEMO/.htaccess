@@ -3,4 +3,5 @@ RewriteEngine On
 RewriteRule ^([-a-zA-Z0-9]+)?$ index.php?action=$1
 RewriteRule ^([-a-zA-Z0-9]+)/?$ index.php?action=$1
 
-#RewriteRule ^([-a-zA-Z0-9]+)/([-a-zA-Z0-9]+)/?$ index.php?controller=$1&action=$2 [QSA]
+RewriteRule ^([-a-zA-Z0-9]+)/([-a-zA-Z0-9]+)/?$ index.php?action=$1&x=$2 [QSA]
+RewriteRule ^([-a-zA-Z0-9]+)/([-a-zA-Z0-9]+)/([-a-zA-Z0-9]+)/?$ index.php?action=$1&x=$2&y=$3 [QSA]

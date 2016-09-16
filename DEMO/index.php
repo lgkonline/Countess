@@ -135,17 +135,17 @@ if ($action == "outErrHandler")
                 "freq" => 95
             ],
             [
-                "chain" => "PutBackToOutputBuffer",
+                "handling" => "PutBackToOutputBuffer",
                 "freq" => 3,
                 "durationMs" => 0.2
             ],
             [
-                "chain" => "TryAgainLater",
+                "handling" => "TryAgainLater",
                 "freq" => 1,
                 "durationMs" => 5
             ],
             [
-                "chain" => "Discard",
+                "handling" => "Discard",
                 "freq" => 1,
                 "durationMs" => 5
             ]            

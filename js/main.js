@@ -144,7 +144,7 @@ function initInputConnectionHandler()
 {
     $.ajax(
         {
-            url: apiUri + "connHandler?x=in&y=" + GetPeriod(),
+            url: apiUri + "connHandler/in/" + GetPeriod(),
             dataType: "json",
             type: "GET",
             success: function(connHandler)
@@ -163,7 +163,7 @@ function initInputBuffer()
 {
     $.ajax(
         {
-            url: apiUri + "buffer?x=in&y=" + GetPeriod(),
+            url: apiUri + "buffer/in/" + GetPeriod(),
             dataType: "json",
             type: "GET",
             success: function(inputBuffer)
@@ -182,7 +182,7 @@ function initProcessing()
 {
     $.ajax(
         {
-            url: apiUri + "processing?x=" + GetPeriod(),
+            url: apiUri + "processing/" + GetPeriod(),
             dataType: "json",
             type: "GET",
             success: function(processing)
@@ -271,7 +271,7 @@ function initOutputBuffer()
 {
     $.ajax(
         {
-            url: apiUri + "buffer?x=out&y=" + GetPeriod(),
+            url: apiUri + "buffer/out/" + GetPeriod(),
             dataType: "json",
             type: "GET",
             success: function(outputBuffer)
@@ -290,7 +290,7 @@ function initOutputConnectionHandler()
 {
     $.ajax(
         {
-            url: apiUri + "connHandler?x=out&y=" + GetPeriod(),
+            url: apiUri + "connHandler/out/" + GetPeriod(),
             dataType: "json",
             type: "GET",
             success: function(connHandler)
@@ -309,7 +309,7 @@ function initOutErrorHandler()
 {
     $.ajax(
         {
-            url: apiUri + "outErrHandler?x=out&y=" + GetPeriod(),
+            url: apiUri + "outErrHandler/out/" + GetPeriod(),
             dataType: "json",
             type: "GET",
             success: function(outErrHandler)
@@ -319,9 +319,9 @@ function initOutErrorHandler()
                 for (var i = 0; i < outErrHandler.length; i++)
                 {
                     pieData.push(outErrHandler[i].freq);
-                    if (isSet(outErrHandler[i].chain))
+                    if (isSet(outErrHandler[i].handling))
                     {
-                        pieLabels.push(outErrHandler[i].chain);
+                        pieLabels.push(outErrHandler[i].handling);
                     }
                     else
                     {
@@ -352,10 +352,10 @@ function initOutErrorHandler()
                 var barData = [], barLabels = [];
                 for (var i = 0; i < outErrHandler.length; i++)
                 {
-                    if (isSet(outErrHandler[i].durationMs) && isSet(outErrHandler[i].chain))
+                    if (isSet(outErrHandler[i].durationMs) && isSet(outErrHandler[i].handling))
                     {
                         barData.push(outErrHandler[i].durationMs);
-                        barLabels.push(outErrHandler[i].chain);
+                        barLabels.push(outErrHandler[i].handling);
                     }
                 }                
                 var barChart = new Chart($("#outErrHandler-bar"), {
@@ -395,7 +395,7 @@ function initThroughput()
 {
     $.ajax(
         {
-            url: apiUri + "throughput?x=" + GetPeriod(),
+            url: apiUri + "throughput/" + GetPeriod(),
             dataType: "json",
             type: "GET",
             success: function(throughput)
