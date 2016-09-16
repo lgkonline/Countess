@@ -6,6 +6,16 @@ var R = $("html").data("root");
 
 var apiUri = R + "DEMO/";
 
+var test;
+
+var charts = {
+    reinit: function(chart) {
+        if (isSet(this[chart])) {
+            this[chart].destroy();
+        }
+    }
+};
+
 function processBuffer(bufferData, idPkey)
 {
     var barData = [], barLabels = [];
@@ -14,7 +24,10 @@ function processBuffer(bufferData, idPkey)
         barData.push(bufferData[i].durationSec / 60);
         barLabels.push(bufferData[i].size + " " + GetTranslation("OBJECTS"));
     }                
-    var barChart = new Chart($("#" + idPkey + "-durationOfFrequency"), {
+
+    charts.reinit(idPkey + "BarChart");
+
+    charts[idPkey + "BarChart"] = new Chart($("#" + idPkey + "-durationOfFrequency"), {
         type: "bar",
         data: 
         {
@@ -52,7 +65,10 @@ function processConnectionHandler(connectionHandlerData, idPkey)
         pieData.push(connectionHandlerData.packetSizeAttributes[i].freq);
         pieLabels.push(connectionHandlerData.packetSizeAttributes[i].size + " " + GetTranslation("OBJECTS"));
     }
-    var pieChart = new Chart($("#" + idPkey + "-packetSizeAttributes"), 
+
+    charts.reinit(idPkey + "PieChart");
+
+    charts[idPkey + "PieChart"] = new Chart($("#" + idPkey + "-packetSizeAttributes"), 
     {
         type: "pie",
         data: 
@@ -87,8 +103,11 @@ function processConnectionHandler(connectionHandlerData, idPkey)
     {
         barData.push(connectionHandlerData.packetSizeAttributes[i].durationMs);
         barLabels.push(connectionHandlerData.packetSizeAttributes[i].size + " " + GetTranslation("OBJECTS"));
-    }                
-    var barChart = new Chart($("#" + idPkey + "-avgConnDurations"), {
+    }    
+
+    charts.reinit(idPkey + "BarChart");
+
+    charts[idPkey + "BarChart"] = new Chart($("#" + idPkey + "-avgConnDurations"), {
         type: "bar",
         data: 
         {
@@ -194,7 +213,10 @@ function initProcessing()
                     pieData.push(processing.procChainAttributes[i].freq);
                     pieLabels.push(processing.procChainAttributes[i].chain);
                 }
-                var pieChart = new Chart($("#processing-procChainAttributes"), 
+
+                charts.reinit("processingPieChart");
+
+                charts.processingPieChart = new Chart($("#processing-procChainAttributes"), 
                 {
                     type: "pie",
                     data: 
@@ -233,8 +255,11 @@ function initProcessing()
                 {
                     barData.push(processing.procChainAttributes[i].durationMs);
                     barLabels.push(processing.procChainAttributes[i].chain);
-                }                
-                var barChart = new Chart($("#processing-avgProcDurations"), {
+                }          
+                
+                charts.reinit("processingBarChart");
+                      
+                charts.processingBarChart = new Chart($("#processing-avgProcDurations"), {
                     type: "bar",
                     data: 
                     {
@@ -328,7 +353,10 @@ function initOutErrorHandler()
                         pieLabels.push(GetTranslation("NO_ERROR"));
                     }
                 }
-                var pieChart = new Chart($("#outErrHandler-pie"), 
+
+                charts.reinit("outErrorHandlerPieChart");
+
+                charts.outErrorHandlerPieChart = new Chart($("#outErrHandler-pie"), 
                 {
                     type: "pie",
                     data: 
@@ -357,8 +385,11 @@ function initOutErrorHandler()
                         barData.push(outErrHandler[i].durationMs);
                         barLabels.push(outErrHandler[i].handling);
                     }
-                }                
-                var barChart = new Chart($("#outErrHandler-bar"), {
+                }   
+
+                charts.reinit("outErrorHandlerBarChart");
+
+                charts.outErrorHandlerBarChart = new Chart($("#outErrHandler-bar"), {
                     type: "bar",
                     data: 
                     {
@@ -408,7 +439,9 @@ function initThroughput()
                     lineLabels.push(timestampToDate(throughput[i].intervalStart, "time"));
                 }
 
-                var lineChart = new Chart($("#throughput-line"), {
+                charts.reinit("throughputLineChart");
+
+                charts.throughputLineChart = new Chart($("#throughput-line"), {
                     type: "line",
                     data: 
                     {
