@@ -1,3 +1,5 @@
+<img src="img/logo.png" alt="Countess Logo">
+
 <h1>Countess</h1>
 
 Demo application using Bootstrap 4 Alpha and Chart.js
