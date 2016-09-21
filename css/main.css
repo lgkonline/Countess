@@ -4816,9 +4816,11 @@ a.text-danger:focus, a.text-danger:hover {
     transform: rotate(-90deg); }
   .moni-arrow-sign.up-special {
     margin-top: -.4em;
-    margin-bottom: -.2em; }
+    margin-bottom: -.2em;
+    opacity: .5; }
   .moni-arrow-sign.left-special {
-    margin-top: 3em; }
+    position: absolute;
+    right: -.3em; }
 
 .moni-small-table {
   font-size: .7em; }

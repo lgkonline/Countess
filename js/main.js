@@ -237,10 +237,6 @@ function initProcessing()
                 }); 
 
                 // ProcDuration
-                // $("#processing-minProcDuration-duration").text(processing.minProcDuration.durationMs + " ms");
-                // $("#processing-avgProcDuration-duration").text(processing.avgProcDuration.durationMs + " ms");
-                // $("#processing-maxProcDuration-duration").text(processing.maxProcDuration.durationMs + " ms");   
-
                 $("#processing-minConnDuration-time").text(timestampToDate(processing.minProcDuration.timestamp));
                 $("#processing-minConnDuration-duration").text(processing.minProcDuration.durationMs + " ms");
 
@@ -334,7 +330,7 @@ function initOutErrorHandler()
 {
     $.ajax(
         {
-            url: apiUri + "outErrHandler/out/" + GetPeriod(),
+            url: apiUri + "outErrHandler/" + GetPeriod(),
             dataType: "json",
             type: "GET",
             success: function(outErrHandler)
@@ -407,9 +403,12 @@ function initOutErrorHandler()
                     },
                     options:
                     {
-                        legend:
-                        {
-                            display: false
+                        scales: {
+                            xAxes: [
+                                {
+                                    display: false
+                                }
+                            ]
                         }
                     }
                 });                        
