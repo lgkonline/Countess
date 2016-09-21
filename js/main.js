@@ -435,7 +435,7 @@ function initThroughput()
                 for (var i = 0; i < throughput.length; i++)
                 {
                     lineData.push(throughput[i].objsPerMin);
-                    lineLabels.push(timestampToDate(throughput[i].intervalStart, "time"));
+                    lineLabels.push(timestampToDate(throughput[i].intervalStart, "time") + " - " + timestampToDate(throughput[i].intervalEnd, "time"));
                 }
 
                 charts.reinit("throughputLineChart");
