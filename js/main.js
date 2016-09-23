@@ -409,6 +409,9 @@ function initOutErrorHandler()
                                     display: false
                                 }
                             ]
+                        },
+                        legend: {
+                            display: false
                         }
                     }
                 });                        

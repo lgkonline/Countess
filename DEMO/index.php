@@ -131,24 +131,20 @@ if ($action == "outErrHandler")
     echo json_encode(
         [
             [
+                "handling" => "TryAgainLater_DefaultConfig",
+                "freq" => 33,
+                "durationMs" => 8.696969696969697
+            ], 
+            [
                 "handling" => "NoError",
-                "freq" => 95
-            ],
+                "freq" => 603,
+                "durationMs" => 3.5024875621890548
+            ], 
             [
-                "handling" => "PutBackToOutputBuffer",
-                "freq" => 3,
-                "durationMs" => 0.2
-            ],
-            [
-                "handling" => "TryAgainLater",
-                "freq" => 1,
-                "durationMs" => 5
-            ],
-            [
-                "handling" => "Discard",
-                "freq" => 1,
-                "durationMs" => 5
-            ]            
+                "handling" => "PutBackToOutputBuffer_DefaultConfig",
+                "freq" => 2,
+                "durationMs" => 0.5
+            ]
         ]
     );
 }

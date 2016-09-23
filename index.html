@@ -14,10 +14,7 @@
         <header>
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-8 col-md-6">
-                        <h1 class="display-5 translate">APP_TITLE</h1>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-md-6">
                         <div class="row">
                             <div class="col-xs-6">
                                 <div class="form-group">
@@ -40,10 +37,9 @@
                                 </div>                            
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
+
+                        <h1 class="display-5 translate">APP_TITLE</h1>
+
                         <p>
                             <span class="translate">SERVICE_INSTANCE</span>:
                             "<span id="metadata-instanceName"></span>"
@@ -51,12 +47,12 @@
                         <p>
                             <span class="translate">RUNNING_TIME_OF_PROCESSES</span>:
                             <span id="metadata-processUptimeHours"></span>
-                        </p>
+                        </p>                        
                     </div>
 
                     <div class="col-md-6">
                         <h5><span class="translate">THROUGHPUT</span> (Obj/Min)</h5>
-                        <canvas id="throughput-line" height="40px"></canvas>
+                        <canvas id="throughput-line" height="64px"></canvas>
                     </div>
                 </div>
             </div>
